@@ -1,0 +1,299 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 43.75%;
+  }
+}
+
+body {
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: royalblue;
+}
+
+.main-container {
+  height: 100vh;
+  width: 100%;
+  background-color: purple;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 0%);
+  position: relative;
+}
+@media only screen and (max-width: 37.5em) {
+  .main-container {
+    height: 88vh;
+  }
+}
+
+.todo__layout {
+  height: 100vh;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.todo {
+  height: 40rem;
+  width: 35%;
+}
+@media only screen and (max-width: 37.5em) {
+  .todo {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(167, 37, 141, 0.6705882353);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    padding-top: 6rem;
+  }
+}
+.todo__header {
+  background-color: violet;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+}
+.todo__date {
+  text-align: center;
+  font-size: 3rem;
+}
+.todo__task {
+  background-color: rgb(205, 199, 199);
+  font-size: 2rem;
+  overflow: hidden;
+  min-height: 25rem;
+  border-radius: 0.5rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .todo__task {
+    min-height: 40rem;
+    max-height: 40rem;
+    overflow-y: scroll;
+    background-color: rgba(205, 199, 199, 0.27);
+    font-weight: 500;
+    font-size: 2.5rem;
+    box-shadow: 2px 6px 9px rgba(0, 0, 0, 0.2509803922);
+  }
+}
+.todo__task__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.todo__task__content:not(:last-child) {
+  border-bottom: 1px solid #999;
+}
+@media only screen and (max-width: 37.5em) {
+  .todo__task__content:not(:last-child) {
+    border-bottom: 1px solid #e1b30e;
+  }
+}
+.todo__task__inputBox {
+  display: flex;
+  width: 77%;
+  cursor: pointer;
+}
+.todo__task__button {
+  margin-right: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+.todo__footer {
+  padding: 1rem 0;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(164, 143, 170);
+  border-radius: 0.3rem;
+  margin-top: 1.5rem;
+}
+.todo__input {
+  border: none;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: transparent;
+}
+@media only screen and (max-width: 37.5em) {
+  .todo__input {
+    font-size: 2.5rem;
+  }
+}
+.todo__input:focus {
+  outline: none;
+}
+.todo__input::placeholder {
+  font-family: cursive;
+  color: #777;
+  text-align: center;
+}
+.todo__btn {
+  background-color: transparent;
+  border: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.todo__btn-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3rem;
+}
+
+.todo__btn:active .icon__edit {
+  fill: rgb(26, 73, 216);
+  transform: scale(1.2);
+}
+
+.todo__btn:active .icon__delete {
+  fill: rgb(248, 3, 3);
+  transform: scale(1.2);
+}
+
+.icon {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+.icon__add {
+  fill: rgb(34, 255, 0);
+}
+.icon__edit {
+  fill: royalblue;
+}
+@media only screen and (max-width: 37.5em) {
+  .icon__edit {
+    fill: #23287e;
+  }
+}
+.icon__delete {
+  fill: rgb(209, 20, 20);
+}
+.icon__save {
+  fill: royalblue;
+}
+
+.input__label {
+  text-transform: capitalize;
+  margin-left: 1rem;
+  display: inline-block;
+  cursor: pointer;
+  padding: 1rem 0;
+  transition: all 0.2s;
+  flex: 0 0 88%;
+}
+
+.input__checkbox {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.input__checkbox:checked + .input__label {
+  color: #666;
+  text-decoration: line-through;
+  text-decoration-color: rgb(182, 88, 88);
+}
+@media only screen and (max-width: 37.5em) {
+  .input__checkbox:checked + .input__label {
+    font-weight: 300;
+  }
+}
+
+.input__edit {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin-left: -1rem;
+  background-color: rgb(205, 199, 199);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  visibility: hidden;
+}
+.input__edit__text {
+  height: 100%;
+  width: 90%;
+  background-color: rgb(234, 229, 229);
+  border: none;
+  box-sizing: border-box;
+  padding-left: 2rem;
+}
+.input__edit__text:focus {
+  color: blue;
+  transform: scale(0 1.2);
+  outline: none;
+}
+
+.previousTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.previousTask__btn, .previousTask__btn:active {
+  padding: 1.8rem;
+  border: none;
+  text-align: center;
+  background-color: violet;
+  font-size: 2rem;
+  border-radius: 5px;
+  color: rgb(139, 33, 232);
+}
+@media only screen and (max-width: 37.5em) {
+  .previousTask__btn, .previousTask__btn:active {
+    display: none;
+  }
+}
+.previousTask__date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+
+.prev,
+.next {
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  margin: 0 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #999;
+  color: white;
+  border: none;
+  border-radius: 50%;
+}
+
+.arrow {
+  font-size: 2rem;
+}
+
+#date {
+  margin-left: 0.4rem;
+}
+
+body.reloading {
+  /* Hide the default refresh animation */
+  animation: none;
+  transition: none;
+  visibility: visible;
+}
+
+/*# sourceMappingURL=style.css.map */
